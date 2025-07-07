@@ -16,5 +16,10 @@ public class Pipe : MonoBehaviour
     void Update()
     {
         transform.position = transform.position + Vector3.left * movementSpeed * Time.deltaTime;
+
+        if (transform.position.x < -7)
+        {
+            Destroy(pipe);
+        }
     }
 }

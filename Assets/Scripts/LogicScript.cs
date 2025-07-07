@@ -24,8 +24,5 @@ public class LogicScript : MonoBehaviour
 		}
 	}
 
-	public void StartGame()
-	{
-		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-	}
+	
 }

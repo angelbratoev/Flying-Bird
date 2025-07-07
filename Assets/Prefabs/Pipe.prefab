@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6238091542838455722}
   - component: {fileID: 6238091542838455721}
   - component: {fileID: 6238091542838455720}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Top Pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 6238091542890701670}
   - component: {fileID: 6238091542890701669}
   - component: {fileID: 1296569226413814113}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,6 +179,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pipe: {fileID: 6238091542890701671}
   movementSpeed: 4.5
+  logic: {fileID: 0}
+  scoreToAdd: 1
 --- !u!61 &1296569226413814113
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -235,7 +237,7 @@ GameObject:
   - component: {fileID: 6238091543501586488}
   - component: {fileID: 6238091543501586503}
   - component: {fileID: 6238091543501586502}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bottom Pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}

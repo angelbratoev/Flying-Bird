@@ -2,28 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LogicScript : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText;
-    public int score = 0;
+	public TextMeshProUGUI scoreText;
+	public int score = 0;
+	private bool playerIsAlive;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	private void Update()
+	{
+		playerIsAlive = GameObject.FindWithTag("Player").GetComponent<Bird>().isAlive;
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-	[ContextMenu("Increase score")]
 	public void AddScore(int scoreToAdd)
-    {
-        score += scoreToAdd;
-        scoreText.text = score.ToString();
-    }
+	{
+		if (playerIsAlive)
+		{
+			score += scoreToAdd;
+			scoreText.text = score.ToString();
+		}
+	}
+
+	public void StartGame()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
 }

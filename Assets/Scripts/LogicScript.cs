@@ -12,7 +12,7 @@ public class LogicScript : MonoBehaviour
 
 	private void Update()
 	{
-		
+
 	}
 
 	public void AddScore(int scoreToAdd)

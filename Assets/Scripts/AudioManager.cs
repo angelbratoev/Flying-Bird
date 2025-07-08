@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
     public enum SoundType
     {
         Point,
-        Hit
+        Hit,
+        StartMenu,
+        PlayingLevel
     }
 
     [System.Serializable]
@@ -28,10 +31,18 @@ public class AudioManager : MonoBehaviour
     public Sound[] AllSounds;
 
     private Dictionary<SoundType, Sound> soundDictionary = new();
+    private AudioSource musicSource;
 
 	private void Awake()
 	{
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
 		Instance = this;
+        DontDestroyOnLoad(gameObject);
 
         foreach (Sound sound in AllSounds)
         {
@@ -39,7 +50,9 @@ public class AudioManager : MonoBehaviour
         }
 	}
 
-    public void Play(SoundType type)
+
+
+	public void Play(SoundType type)
     {
         if (!soundDictionary.TryGetValue(type, out Sound sound))
         {
@@ -57,5 +70,24 @@ public class AudioManager : MonoBehaviour
         audioSrc.Play();
 
         Destroy(soundObj, sound.Clip.length);
+    }
+
+    public void ChangeTrack(SoundType type)
+    {
+        if (!soundDictionary.TryGetValue(type, out Sound track))
+        {
+			Debug.LogWarning($"Sound type {type} not found!");
+			return;
+		}
+
+        if (musicSource == null)
+        {
+            musicSource = gameObject.AddComponent<AudioSource>();
+            musicSource.loop = true;
+        }
+
+        musicSource.clip = track.Clip;
+        musicSource.volume = track.Volume;
+        musicSource.Play();
     }
 }

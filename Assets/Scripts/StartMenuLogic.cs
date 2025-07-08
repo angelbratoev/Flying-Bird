@@ -20,11 +20,13 @@ public class StartMenuLogic : MonoBehaviour
 	public void StartGame()
 	{
 		SceneManager.LoadScene(SceneEnums.PlayingLevel);
+        AudioManager.Instance.ChangeTrack(AudioManager.SoundType.PlayingLevel);
 	}
 
     public void MainMenu()
     {
 		SceneManager.LoadScene(SceneEnums.StartMenu);
+        AudioManager.Instance.ChangeTrack(AudioManager.SoundType.StartMenu);
 	}
 
 	public void ExitGame()

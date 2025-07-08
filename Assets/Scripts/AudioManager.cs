@@ -48,6 +48,8 @@ public class AudioManager : MonoBehaviour
         {
             soundDictionary[sound.Type] = sound;
         }
+
+        Instance.ChangeTrack(SoundType.StartMenu);
 	}
 
 

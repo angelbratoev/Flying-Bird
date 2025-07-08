@@ -21,6 +21,7 @@ public class LogicScript : MonoBehaviour
 		{
 			score += scoreToAdd;
 			scoreText.text = score.ToString();
+			AudioManager.Instance.Play(AudioManager.SoundType.Point);
 		}
 	}
 

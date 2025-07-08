@@ -40,7 +40,13 @@ public class Bird : MonoBehaviour
 	{
 		if (collision.gameObject.layer == 6)
 		{
+            if(isAlive)
+            {
+				AudioManager.Instance.Play(AudioManager.SoundType.Hit);
+			}
+
             isAlive = false;
+            
 			Debug.Log("Bird is dead!");
 		}
 	}

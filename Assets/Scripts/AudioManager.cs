@@ -1,0 +1,61 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AudioManager : MonoBehaviour
+{
+    public enum SoundType
+    {
+        Point,
+        Hit
+    }
+
+    [System.Serializable]
+    public class Sound
+    {
+        public SoundType Type;
+        public AudioClip Clip;
+
+        [Range(0f, 1f)]
+        public float Volume = 1f;
+
+        [HideInInspector]
+        public AudioSource Source;
+    }
+
+    public static AudioManager Instance;
+
+    public Sound[] AllSounds;
+
+    private Dictionary<SoundType, Sound> soundDictionary = new();
+
+	private void Awake()
+	{
+		Instance = this;
+
+        foreach (Sound sound in AllSounds)
+        {
+            soundDictionary[sound.Type] = sound;
+        }
+	}
+
+    public void Play(SoundType type)
+    {
+        if (!soundDictionary.TryGetValue(type, out Sound sound))
+        {
+            Debug.LogWarning($"Sound type {type} not found!");
+            return;
+        }
+
+		//Create new sound object
+		GameObject soundObj = new($"Sound_{type}");
+		AudioSource audioSrc = soundObj.AddComponent<AudioSource>();
+
+        audioSrc.clip = sound.Clip;
+        audioSrc.volume = sound.Volume;
+
+        audioSrc.Play();
+
+        Destroy(soundObj, sound.Clip.length);
+    }
+}

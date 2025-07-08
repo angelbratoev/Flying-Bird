@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
-    private GameObject bird;
+    public GameObject bird;
     public Rigidbody2D myRigidBody;
     public float flapPower = 1;
     public bool isAlive = true;
@@ -28,6 +28,12 @@ public class Bird : MonoBehaviour
         {
             myRigidBody.velocity = Vector2.up * flapPower;
         }
+
+        if (transform.position.y < -4)
+        {
+            Destroy(bird);
+            Debug.Log("Bird destroyed!");
+        }
     }
 
 	private void OnCollisionEnter2D(Collision2D collision)
@@ -35,6 +41,7 @@ public class Bird : MonoBehaviour
 		if (collision.gameObject.layer == 6)
 		{
             isAlive = false;
+			Debug.Log("Bird is dead!");
 		}
 	}
 }

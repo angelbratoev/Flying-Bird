@@ -8,21 +8,21 @@ public class LogicScript : MonoBehaviour
 {
 	public TextMeshProUGUI scoreText;
 	public int score = 0;
-	private bool playerIsAlive;
+	public Bird bird;
 
 	private void Update()
 	{
-		playerIsAlive = GameObject.FindWithTag("Player").GetComponent<Bird>().isAlive;
+		
 	}
 
 	public void AddScore(int scoreToAdd)
 	{
-		if (playerIsAlive)
+		if (bird.isAlive)
 		{
 			score += scoreToAdd;
 			scoreText.text = score.ToString();
 		}
 	}
 
-	
+
 }

@@ -32,6 +32,7 @@ public class AudioManager : MonoBehaviour
 
     private Dictionary<SoundType, Sound> soundDictionary = new();
     private AudioSource musicSource;
+    private SoundType currentSound;
 
 	private void Awake()
 	{
@@ -91,5 +92,12 @@ public class AudioManager : MonoBehaviour
         musicSource.clip = track.Clip;
         musicSource.volume = track.Volume;
         musicSource.Play();
+
+        currentSound = type;
+    }
+
+    public SoundType GetCurrentSoundType()
+    {
+        return currentSound;
     }
 }

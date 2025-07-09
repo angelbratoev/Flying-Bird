@@ -12,7 +12,10 @@ public class LogicScript : MonoBehaviour
 
 	private void Update()
 	{
-
+		if (!bird.isAlive && score > PlayerPrefs.GetInt("HighScore"))
+		{
+			PlayerPrefs.SetInt("HighScore", score);
+		}
 	}
 
 	public void AddScore(int scoreToAdd)
@@ -22,6 +25,8 @@ public class LogicScript : MonoBehaviour
 			score += scoreToAdd;
 			scoreText.text = score.ToString();
 			AudioManager.Instance.Play(AudioManager.SoundType.Point);
+
+
 		}
 	}
 
